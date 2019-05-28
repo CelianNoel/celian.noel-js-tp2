@@ -12,6 +12,27 @@ const cellStyle = {
   cursor: "pointer"
 };
 
-const Cell = () => <div style={cellStyle}>?</div>;
+class Cell extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isOver: false,
+    }
+  }
+  hoverOn = () => {                 // Ca permet de passer le this de la classe sur le this de la fonction 
+    this.setState({ isOver: true })
+  }
+  hoverOff = () => {
+    this.setState({ isOver: false })
+  }
+
+  render() {                                                        
+    return (<div onClick={() => { this.props.handleClick()}} style={{ ...cellStyle, backgroundColor: this.state.isOver ? "gray" : "white" }} onMouseEnter={this.hoverOn} onMouseLeave={this.hoverOff}>{this.props.value}</div>);
+  }
+}
+
+//const Cell = () => <div style={cellStyle}>?</div>;
+
+//obj1 =
 
 export default Cell;
